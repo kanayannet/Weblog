@@ -1,0 +1,17 @@
+<%= @PageHeadView %>
+<br>
+<div id="left_menu">
+&nbsp;
+</div>
+<div id="center_menu">
+<br><br>&nbsp;
+<div id="comment2"><%= h cgi['subject'] %><br>&nbsp;
+<div id="comment3"><%= @logic.ResArticleConvert(cgi['comment']) %></div>
+<div id="comment4">お名前：<%= h cgi['name'] %>&nbsp;&nbsp;<%= @logic.year %>年<%= @logic.month %>月<%= @logic.day %>日 <%= @logic.hour %>:<%= @logic.min %>:<%= @logic.sec %><br /></div></div>
+<br>&nbsp;
+<input type="button" value="この画面を閉じる" onclick="window.close();"><br><br>
+<%= @PageFootView %></div>
+<div id="right_menu">
+&nbsp;
+</div></div>
+</body></html>

@@ -1,0 +1,110 @@
+<% 
+	#記事数を取得(表示ページを得る)
+	pagemax = trackback.length - 1
+	#page数 = 記事数 / 5
+	pages = pagemax / 5
+	if(/\./=~pages.to_s)
+		pages = (pages + 1).to_i
+	end
+	start = 0
+	i = 0
+	if(/^\d+$/=~cgi['page'])
+		start = cgi['page'].to_i
+	end
+	track_html = ""	
+	for page in 0..pages
+		hy_page = (page + 1).to_s
+		if(page == start)
+		else
+			hy_page = <<"__END"
+			<a href="#{@yaml['Url']}?mode=TrackBackList&page=#{page}">#{hy_page}</a>
+__END
+		end
+		track_html = <<"__END"
+		#{track_html}
+		#{hy_page} |
+__END
+	end
+	
+	track_html = track_html , '<br><br>'
+	
+	#記事リストを生成
+	trackback.each_index do |cnt|
+		if((start * 5) > cnt)
+			next
+		end
+		id = trackback[cnt]['id']
+		year = trackback[cnt]['created_at'][0..3]
+		month = trackback[cnt]['created_at'][4..5]
+		day = trackback[cnt]['created_at'][6..7]
+		hour = trackback[cnt]['created_at'][8..9]
+		min = trackback[cnt]['created_at'][10..11]
+		sec = trackback[cnt]['created_at'][12..13]
+		name = @logic.SubjectConvert(trackback[cnt]['name'])
+		if(trackback[cnt]['url'] != "")
+			name = "<a href=\"#{trackback[cnt]['url']}\" target=\"_blank\">#{name}</a>";
+		end
+		subject = @logic.SubjectConvert(trackback[cnt]['subject'])
+		article = @logic.ResArticleConvert(trackback[cnt]['article'])
+		track_html = <<"__END"
+		#{track_html}
+		<div id="center_text1">
+		<h2 id="date">削除：<input type="checkbox" name="#{id}" value="1">&nbsp;#{year}/#{month}/#{day} #{hour}:#{min}:#{sec}</h2>
+		<div id="center_text2">
+		#{subject}&nbsp;&nbsp;#{name}
+		<div id="center_text3"><br />#{article}<br>&nbsp;</div>
+		</div>
+		</div><br><br>
+__END
+		i = i + 1
+		if(i >= 5)
+			break
+		end
+	end
+	for page in 0..pages
+		hy_page = (page + 1).to_s
+		if(page == start)
+		else
+			hy_page = <<"__END"
+			<a href="#{@yaml['Url']}?mode=TrackBackList&page=#{page}">#{hy_page}</a>
+__END
+		end
+		track_html = <<"__END"
+		#{track_html}
+		#{hy_page} |
+__END
+	end
+	track_html = track_html , '<br><br>'
+ %>
+
+<%= @PageHeadView %>
+<script language="javascript">
+<!--
+	function TrackDelete()
+	{
+		if(confirm('このまま削除しますがよろしいですか？'))
+		{
+			document.nform.submit();
+		}
+	}
+//-->
+</script>
+<br>
+<div id="left_menu">
+&nbsp;
+</div>
+<div id="center_menu">
+<form action="#{@yaml['Url']}" method="POST" name="nform">
+<input type="hidden" name="mode" value="TrackBackDelete">
+<%= track_html %>
+<input type="button" value="チェックした記事を削除" onclick="TrackDelete();"></form>
+<br>
+<form action="<%= @yaml['Url'] %>" method="get">
+<input type="hidden" name="mode" value="mente_top">
+<input type="submit" value="管理画面TOPに戻る">
+</form>
+<%= @PageFootView %></div>
+<div id="right_menu">
+&nbsp;
+</div></div>
+</body></html>

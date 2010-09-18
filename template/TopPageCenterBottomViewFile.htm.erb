@@ -1,0 +1,38 @@
+<% 
+	track_html = "<div id=\"trackback1\">この記事へのトラックバック</div>"
+	check = 0
+	track_cnt = 0
+	track_list.each_index do |key|
+		if(cgi['edit_num'].to_i == track_list[key]['parid'].to_i)
+			tyear = track_list[key]['created_at'][0..3]
+			tmonth = track_list[key]['created_at'][4..5]
+			tday = track_list[key]['created_at'][6..7]
+			thour = track_list[key]['created_at'][8..9]
+			tmin = track_list[key]['created_at'][10..11]
+	 		tsec = track_list[key]['created_at'][12..13]
+			
+			link_url = "<a href=\"#{track_list[key]['url']}\" target=\"_blank\">"
+			name = @logic.SubjectConvert(track_list[key]['name'])
+			article = @logic.ResArticleConvert(track_list[key]['article'])
+			subject = @logic.SubjectConvert(track_list[key]['subject'])
+
+			track_html = <<"__END"
+			#{track_html}
+			<div id="trackback2"><a name="track-#{track_list[key]['id']}">#{subject}</a><br>&nbsp;
+			<div id="trackback3">#{article}</div>
+			<div id="trackback4">#{link_url}#{name}</a>&nbsp;&nbsp;#{tyear}年#{tmonth}月#{tday}日 #{thour}:#{tmin}:#{tsec}<br /></div></div>
+__END
+			check = 1
+			track_cnt = track_cnt + 1
+			if(track_cnt >= @yaml['MaxTrackBackPage'])
+				break
+			end
+		end
+	end
+	if(check == 0)
+		track_html = ""
+	end
+ %>
+
+<%= track_html %>
+<div id="trackback5"><br>TrackBack URL:<br><font id="TrackBackUrl"><%= @yaml['Url'] %>?mode=TrRes&edit_num=<%= cgi['edit_num'] %></font></div>

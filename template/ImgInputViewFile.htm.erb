@@ -1,0 +1,153 @@
+<% 
+	#画像数を取得(表示ページを得る)
+	pagemax = imglist.length - 1
+	#page数 = 記事数 / 5
+	pages = pagemax / 5
+	if(/\./=~pages.to_s)
+		pages = (pages + 1).to_i
+	end
+	start = 0
+	i = 0
+	if(/^\d+$/=~cgi['page'])
+		start = cgi['page'].to_i
+	end
+	img_page_html = ""
+	for page in 0..pages
+		hy_page = (page + 1).to_s
+		if(page == start)
+		else
+			hy_page = <<"__END"
+			<a href="#{@yaml['Url']}?mode=ImageWriteInput&page=#{page}&winopen_flag=#{cgi['winopen_flag']}">#{hy_page}</a>
+__END
+		end
+		img_page_html = <<"__END"
+		#{img_page_html}
+		#{hy_page} |
+__END
+	end
+	img_html = ""
+	imglist.each_index do |cnt|
+		if((start * 5) > cnt)
+			next
+		end
+		id = imglist[cnt]['id']
+		imgname = imglist[cnt]['imgname']
+		
+		#別窓の呼び出しの場合専用タグを出す
+		img_input_button = ""
+		a_tag = "<a href=\"#{@yaml['ImageFileUrl']}#{imgname}\" target=\"image\">"
+		if(cgi['winopen_flag'] == '1')
+			img_input_button = <<"__END"
+			<input type="button" onclick="img_tag_input('{image_id:#{imgname} w=100 h=100}')" value="この画像を使う">
+__END
+			a_tag = "<a href=\"javascript: img_tag_input('{image_id:#{imgname} w=100 h=100}')\">"
+		end
+		
+		img_html = <<"__END"
+		#{img_html}
+		<tr>
+		<td id="mente_img_input_td_left">
+		<input type="checkbox" name="#{id}" value="1">
+		</td>
+		<td id="mente_img_input_td_center">
+		#{a_tag}<img src="#{@yaml['ImageFileUrl']}#{imgname}" width="100" height="100" border="0"></a>
+		</td>
+		<td id="mente_img_input_td_right">
+		{image_id:#{imgname} w=100 h=100}<br><br>
+		#{img_input_button}
+		</td>
+		</tr>
+__END
+		i = i + 1
+		if(i >= 5)
+			break
+		end
+	end
+	img_button = <<"__END"
+	<form action="#{@yaml['Url']}" method="get">
+	<input type="hidden" name="mode" value="mente_top">
+	<input type="submit" value="管理画面TOPに戻る">
+	</form>
+__END
+	#別窓の呼び出しの場合
+	img_input_hidden = ""
+	if(cgi['winopen_flag'] == '1')
+		@PageHeadView = <<"__END"
+		<html>
+		<title>
+		画像管理画面
+		</title>
+		<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="paragma" content="no-cache">
+		<meta name="description" content="#{h @yaml['Description']}">
+		<base target="_self">
+		<link rel="stylesheet" href="#{@yaml['CssUrl']}" type="text/css" />
+		</head>
+		<body>
+		<div id="img_list_head">
+__END
+		img_button = <<"__END"
+		<input type="button" value="この画面を閉じる" onclick="window.close();">
+__END
+		img_input_hidden = <<"__END"
+		<input type="hidden" name="winopen_flag" value="1">
+__END
+	end
+ %>
+<%= @PageHeadView %>
+<script languege="javascript">
+<!--
+	function ImgExec()
+	{
+		if(confirm('このまま、設定しますが\nよろしいですか？'))
+		{
+			document.nform.submit();
+		}
+	}
+	function img_tag_input(tag)
+	{
+		window.returnValue = tag;
+		window.close();
+	}
+//-->
+</script>
+<div id="mente_img_input">
+<%= img_page_html %>
+<div id="mente_img_input_example">
+<br>※ 投稿記事の中に「画像埋込タグ」を貼り付ければ、画像が表示されます。<br>
+例：{image_id:1.jpg w=100 h=100} は 横幅100px 高さ100px の 1.jpg を表示します。
+</div>
+<table id="mente_img_input_table">
+<tr>
+<form action="<%= @yaml['Url'] %>" method="post" name="nform" enctype="multipart/form-data">
+<input type="hidden" name="mode" value="ImgExec">
+<%= img_input_hidden %>
+<td id="mente_img_input_td_left">
+削除
+</td>
+<td id="mente_img_input_td_center">
+画像
+</td>
+<td id="mente_img_input_td_right">
+画像埋込タグ
+</td>
+</tr>
+<%= img_html %>
+<tr>
+<td id="mente_imgup_input_td" colspan="3">
+UPする画像&nbsp;&nbsp;
+<input type="file" name="image" size="25">
+</td>
+</tr>
+<tr>
+<td id="mente_img_input_td_submit" colspan="3">
+<input type="button"  value="設定する" onclick="ImgExec();">
+</td></form>
+</tr>
+</table>
+<br>
+<%= img_button %>
+</div>
+<%= @PageFootView %></div>
+</body></html>

@@ -1,0 +1,76 @@
+<div id="sidetitle"> 
+<%= year.to_i %>年 <%= month.to_i %>月
+</div>
+<div id="calender">
+<table id="calender_table_design">
+<tr> 
+<td id="calender_td_design">
+<%= @youbi[0] %>
+</td> 
+<td id="calender_td_design">
+<%= @youbi[1] %>
+</td> 
+<td id="calender_td_design">
+<%= @youbi[2] %>
+</td> 
+<td id="calender_td_design">
+<%= @youbi[3] %>
+</td> 
+<td id="calender_td_design">
+<%= @youbi[4] %>
+</td> 
+<td id="calender_td_design">
+<%= @youbi[5] %>
+</td> 
+<td id="calender_td_design">
+<%= @youbi[6] %>
+</td> 
+</tr>
+<% 
+      cal_html = '<tr>'
+      for num in 0..cal['StartWday']-1 do
+        cal_html = cal_html + "<td id=\"calender_td_design\"></td>"
+      end
+      #曜日番号をカウントアップ
+      wday_cnt = cal['StartWday']
+      design = 'calender_td_design'
+      for num in 1..cal['EndMonthDay'] do
+        if((@logic.year.to_i == year.to_i)&&(@logic.month.to_i == month.to_i)&&(@logic.day.to_i == num.to_i))
+          #当日なら色を変える
+          design = 'calender_td_today_design'
+        elsif((wday_cnt == 0)||(holiday_info["#{year.to_i}_#{month.to_i}_#{num.to_i}"] == 1))
+          #日曜日・登録休日なら色を変える
+          design = 'calender_td_sun_design'
+        elsif(wday_cnt == 6)
+          #土曜日なら色を変える
+          design = 'calender_td_sut_design'
+        else
+          design = 'calender_td_design'
+        end
+        #リンクを付ける
+	hyyear = year.to_s
+	hymonth = sprintf("%02d",month.to_i)
+	hyday = sprintf("%02d",num.to_i)
+        link_flag = parent_year_month_day["#{hyyear}#{hymonth}#{hyday}"]
+        
+	if(link_flag == 1)
+	  cal_html = cal_html + "<td id=\"#{design}\"><a href=\"#{@yaml['Url']}?year=#{hyyear}&month=#{hymonth}&day=#{hyday}\">#{num}</a></td>"
+        else
+          cal_html = cal_html + "<td id=\"#{design}\">#{num}</td>"
+        end
+        wday_cnt = wday_cnt + 1
+        if(wday_cnt == 7)
+          cal_html = cal_html + "</tr><tr>"
+          wday_cnt = 0
+        end
+      end
+      cal_html = cal_html + '</tr>' 
+%>
+<%= cal_html %>
+<tr>
+<td id="calender_td_foot_design" colspan="7">
+<a href="<%= @yaml['Url'] %>?year=<%= cal['BackYear'] %>&month=<%= cal['BackMonth'] %>">前の月</a> | <a href="<%= @yaml['Url'] %>?year=<%= cal['NextYear'] %>&month=<%= cal['NextMonth'] %>">次の月</a>
+</td>
+</tr>
+</table>
+</div>

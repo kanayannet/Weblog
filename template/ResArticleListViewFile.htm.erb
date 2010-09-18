@@ -1,0 +1,106 @@
+<% 
+	#記事数を取得(表示ページを得る)
+	pagemax = child_list.length - 1
+	#page数 = 記事数 / 5
+	pages = pagemax / 5
+	if(/\./=~pages.to_s)
+		pages = (pages + 1).to_i
+	end
+	start = 0
+	i = 0
+	if(/^\d+$/=~cgi['page'])
+		start = cgi['page'].to_i
+	end
+	child_html = ""	
+	for page in 0..pages
+		hy_page = (page + 1).to_s
+		if(page == start)
+		else
+			hy_page = <<"__END"
+			<a href="#{@yaml['Url']}?mode=ResArticleList&page=#{page}">#{hy_page}</a>
+__END
+		end
+		child_html = <<"__END"
+		#{child_html}
+		#{hy_page} |
+__END
+	end
+	
+	child_html = child_html , '<br><br>'
+	
+	#記事リストを生成
+	child_list.each_index do |cnt|
+		if((start * 5) > cnt)
+			next
+		end
+		id = child_list[cnt]['id']
+		year = child_list[cnt]['created_at'][0..3]
+		month = child_list[cnt]['created_at'][4..5]
+		day = child_list[cnt]['created_at'][6..7]
+		hour = child_list[cnt]['created_at'][8..9]
+		min = child_list[cnt]['created_at'][10..11]
+		sec = child_list[cnt]['created_at'][12..13]
+		subject = @logic.SubjectConvert(child_list[cnt]['subject'])
+		article = @logic.ResArticleConvert(child_list[cnt]['article'])
+		child_html = <<"__END"
+		#{child_html}
+		<div id="center_text1">
+		<h2 id="date">削除：<input type="checkbox" name="#{id}" value="1">&nbsp;#{year}/#{month}/#{day} #{hour}:#{min}:#{sec}</h2>
+		<div id="center_text2">
+		#{subject}
+		<div id="center_text3"><br />#{article}<br>&nbsp;</div>
+		</div>
+		</div><br><br>
+__END
+		i = i + 1
+		if(i >= 5)
+			break
+		end
+	end
+	for page in 0..pages
+		hy_page = (page + 1).to_s
+		if(page == start)
+		else
+			hy_page = <<"__END"
+			<a href="#{@yaml['Url']}?mode=ResArticleList&page=#{page}">#{hy_page}</a>
+__END
+		end
+		child_html = <<"__END"
+		#{child_html}
+		#{hy_page} |
+__END
+	end
+	child_html = child_html , '<br><br>'
+ %>
+
+<%= @PageHeadView %>
+<script language="javascript">
+<!--
+	function ResDelete()
+	{
+		if(confirm('このまま削除しますがよろしいですか？'))
+		{
+			document.nform.submit();
+		}
+	}
+//-->
+</script>
+<br>
+<div id="left_menu">
+&nbsp;
+</div>
+<div id="center_menu">
+<form action="#{@yaml['Url']}" method="POST" name="nform">
+<input type="hidden" name="mode" value="ResArticleDelete">
+<%= child_html %>
+<input type="button" value="チェックした記事を削除" onclick="ResDelete();"></form>
+<br>
+<form action="<%= @yaml['Url'] %>" method="get">
+<input type="hidden" name="mode" value="mente_top">
+<input type="submit" value="管理画面TOPに戻る">
+</form>
+<%= @PageFootView %></div>
+<div id="right_menu">
+&nbsp;
+</div></div>
+</body></html>

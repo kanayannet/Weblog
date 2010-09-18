@@ -1,0 +1,924 @@
+/* bodyタグ全体 */
+body
+{
+	font-family:Verdana;
+	background-image:url();
+	background-attachment: fixed;
+	background-color: #1E90FF;
+	margin:0px;
+	padding:0px;
+	text-align:center;
+	font-size: 11pt;
+}
+/* ブログ表示枠 */
+#all
+{
+	font-family:Verdana;
+	margin:0px auto 0px auto;
+	width:950px;
+	min-height:100%;
+	background-color: #FFFFFF;
+	color:#585858;
+}
+/* 上部タイトル部分 */
+#title
+{
+	font-family:Verdana;
+	margin:0px 11px;
+	text-align:left;
+	background-color: #3399FF;
+	padding-left:25px;
+	height:114px;
+}
+/* 上部ブログ説明文部分 */
+#description
+{
+	color:#FFFFFF;
+	font-size:12px;
+	font-weight:bold;
+	line-height:140%;
+	padding:0px 10px 0px 0px;
+}
+/* 左メニュー */
+#left_menu
+{
+	font-weight:normal;
+	background-color: #FFFFFF;
+	width:196px;
+	float:left;
+	margin: -10px 0px 0px 20px;
+	padding: 0px 0px 0px 0px;
+	text-align:center;
+	font-family:Verdana;
+}
+
+/* サイドのタイトル */
+#sidetitle
+{
+	color:#FFFFFF;
+	text-align: center;
+	font-size:12px;
+	font-weight:bold;
+	padding:5px 0px 5px 0px;
+	margin-bottom:1px;
+	background-color:#99CCFF;
+	width: 196px;
+}
+
+/* カレンダー */
+
+#calender
+{
+	padding:5px 0px 5px 0px;
+	margin-bottom:1px;
+}
+
+/* カレンダーのtableデザイン */
+#calender_table_design
+{
+	background-color:#ffffff;
+	width:100%;
+	border:0px;
+	border-collapse:collapse;
+}
+
+/* カレンダーのtd デザイン(平日) */
+#calender_td_design
+{
+	font-size:9pt;
+	text-align:center;
+	padding: 2px;
+}
+/* カレンダーのtd デザイン(当日) */
+#calender_td_today_design
+{
+	font-size:9pt;
+	text-align:center;
+	background-color:#ffff97;
+	font-weight:bold;
+	padding: 2px;
+}
+/* カレンダーのtd デザイン(土曜日) */
+#calender_td_sut_design
+{
+	font-size:9pt;
+	text-align:center;
+	background-color:#ceffff;
+	padding: 2px;
+}
+/* カレンダーのtd デザイン(日曜日・祝日) */
+#calender_td_sun_design
+{
+	font-size:9pt;
+	text-align:center;
+	background-color:#ffc8c8;
+	padding: 2px;
+}
+/* カレンダーの下部のデザイン(次月・前月) */
+#calender_td_foot_design
+{
+	font-size:10pt;
+	text-align:center;
+	background-color:#FFFFFF;
+	padding: 2px;
+}
+
+/* Topページのプロフィール */
+#top_profile
+{
+	padding:5px 0px 5px 0px;
+	width:195px;
+	text-align:center;
+	margin-bottom:1px;
+}
+/* TopページのMy Favorites */
+#my_favorites
+{
+	padding:5px 0px 5px 0px;
+	width:195px;
+	text-align:center;
+	margin-bottom:1px;
+}
+
+/* Topページの左自由入力欄 */
+#left_free_input
+{
+	padding:5px 0px 5px 0px;
+	text-align:center;
+	width:195px;
+	margin-bottom:1px;
+}
+
+
+/* 中央部分 */
+#center_menu
+{
+	margin:-10px 12px 0px 12px;
+	background-color: #FFFFFF;
+	float:left;
+	font-size:12px;
+	padding-bottom:10px;
+	width:470px;
+	font-family:Verdana;
+}
+
+/* 記事日付表示 */
+#date
+{
+	color:#FFFFFF;
+	margin-top:0px;
+	margin-bottom:0px;
+	padding:5px 0px 5px 15px;
+	background-color:#99CCFF;
+	font-size:12px;
+}
+
+/* メイン記事 */
+#center_text1
+{
+	padding:0px;
+	text-align:left;
+	word-break: break-all;
+	margin-bottom:2px;
+}
+/* メイン記事 */
+#center_text2
+{
+	font-weight:normal;
+	line-height:180%;
+	padding:0px 12px;
+	word-break: break-all;
+	border:1px solid #D4DCEB;
+}
+/* メイン記事 */
+#center_text3
+{
+	font-size: 15px;
+	word-break: break-all;
+	line-height:150%;
+	padding:0px 0px 0px 0px;
+}
+/* メイン記事tableタグ */
+#center_table
+{
+	width: 100%;
+}
+#center_table_td
+{
+	background-color: #CCCCCC;
+	width: 100%;
+	padding: 10px 10px 10px 10px;
+	line-height:150%;
+	border:1px solid #000000;
+}
+/* 返信記事 */
+#comment1
+{
+	font-weight:bold;
+	margin:0px;
+	word-break: break-all;
+	font-size:9px;
+	padding:5px;
+	text-align:left;
+}
+/* 返信記事 */
+#comment2
+{
+	font-size:12px;
+	word-break: break-all;
+	line-height:140%;
+	padding:5px;
+	text-align:left;
+}
+/* 返信記事 */
+#comment3
+{
+	font-size: 14px;
+	word-break: break-all;
+	padding:5px;
+	text-align:left;
+}
+/* 返信記事 */
+#comment4
+{
+	font-size:10px;
+	word-break: break-all;
+	text-align:right;
+	padding:5px;
+
+}
+/* trackback記事 */
+#trackback1
+{
+	font-weight:bold;
+	margin:0px;
+	word-break: break-all;
+	font-size:9px;
+	padding:5px;
+	text-align:left;
+}
+/* trackback記事 */
+#trackback2
+{
+	font-size:10px;
+	line-height:140%;
+	word-break: break-all;
+	padding:5px;
+	text-align:left;
+}
+/* trackback記事 */
+#trackback3
+{
+	font-size: 12px;
+	word-break: break-all;
+	padding:5px;
+	text-align:left;
+}
+/* trackback記事 */
+#trackback4
+{
+	word-break: break-all;
+	font-size:10px;
+	text-align:right;
+	padding:5px;
+
+}
+/* trackback記事 */
+#trackback5
+{
+	word-break: break-all;
+	font-weight:bold;
+	margin:0px;
+	font-size:11px;
+	padding:5px;
+	text-align:left;
+}
+/* trackbackURL表示部分 */
+#TrackBackUrl
+{
+	word-break: break-all;
+	padding:5px;
+	font-size:9px;
+}
+/* 返信入力フォームのメイン枠 */
+#input_form
+{
+	font-weight:bold;
+	margin:0px;
+	font-size:11px;
+	padding: 10px 0px 10px 0px;
+	text-align:left;
+}
+/* 返信入力フォーム */
+#FormRes
+{
+	width: 360px;
+}
+
+#FormResTdLeft
+{
+	font-size:11px;
+	text-align: right;
+}
+
+#FormResTdRight
+{
+	font-size:11px;
+	text-align: left;
+}
+
+#FormResTdSubmit
+{
+	font-size:11px;
+	text-align: center;
+}
+
+#right_menu
+{
+	font-weight:normal;
+	background-color: #FFFFFF;
+	float:left;
+	width:196px;
+	margin: -10px 20px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	text-align:center;
+	font-family:Verdana;
+}
+
+#new_parent
+{
+	padding:5px 0px 5px 0px;
+	width:191px;
+	text-align:left;
+	font-size:12px;
+	margin-left:5px;
+	margin-bottom:1px;
+}
+
+#new_child
+{
+	padding:5px 0px 5px 0px;
+	width:191px;
+	text-align:left;
+	font-size:12px;
+	margin-left:5px;
+	margin-bottom:1px;
+}
+
+/* Topページの右自由入力欄 */
+#right_free_input
+{
+	padding:5px 0px 5px 0px;
+	text-align:center;
+	width:195px;
+	margin-bottom:1px;
+}
+
+
+/* パスワード入力画面 */
+#pass_input
+{
+	border:1px solid #D4DCEB;
+	background-color: #FFFFFF;
+	width: 400px;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	padding-top: 10px;
+	
+	text-align:center;
+	font-family:Verdana;
+}
+/* メンテナンスTOPのメイン枠 */
+#mente_top
+{
+	border:0px;
+	background-color: #FFFFFF;
+	width: 600px;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align:center;
+	font-family:Verdana;
+}
+/* メンテナンスTOPのメインtable */
+#mente_table
+{
+	background-color:#ffffff;
+	width:100%;
+	border:1px solid #3399FF;
+	text-align: center;
+	border-collapse:collapse;
+}
+/* メンテナンスTOPのtable_td */
+#mente_td
+{
+	border:0px;
+	width: 50%;
+	height: 50px;
+	text-align: center;
+	padding-top: 5px;
+}
+/* メンテナンスTOPのbuttonデザイン */
+#mente_button
+{
+	font-size:11pt;
+	font-weight:bold;
+	width: 80%;
+	height: 60%;
+}
+
+#mente_article_input
+{
+	border:0px;
+	background-color: #FFFFFF;
+	width: 550px;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align:center;
+	font-family:Verdana;
+}
+
+#mente_article_input_table
+{
+	background-color:#ffffff;
+	width:100%;
+	border:1px solid #3399FF;
+	text-align: center;
+	border-collapse:collapse;
+}
+
+#mente_article_input_td_left
+{
+	background-color:#ffffff;
+	width:40%;
+	text-align: right;
+	font-size:11px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+#mente_article_input_td_right
+{
+	background-color:#ffffff;
+	width:60%;
+	text-align: left;
+	font-size:15px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+#mente_article_input_td_submit
+{
+	background-color:#ffffff;
+	padding-top: 10px;
+	text-align: left;
+	font-size:11px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+/* 記事入力インターフェース(オリジナルタグ)のボタン */
+#mente_article_button
+{
+	font-size:9pt;
+	white-space: nowrap;
+	font-weight: bold;
+	width: 45px;
+	height: 35px;
+	text-align: center;
+	vertical-align: top;
+}
+
+#mente_profile_input
+{
+	border:0px;
+	background-color: #FFFFFF;
+	width: 480px;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align:center;
+	font-family:Verdana;
+}
+
+#mente_profile_input_table
+{
+	background-color:#ffffff;
+	width:100%;
+	border:1px solid #3399FF;
+	text-align: center;
+	border-collapse:collapse;
+}
+
+#mente_profile_input_td_left
+{
+	background-color:#ffffff;
+	width:40%;
+	text-align: right;
+	font-size:11px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+#mente_profile_input_td_right
+{
+	background-color:#ffffff;
+	width:60%;
+	text-align: left;
+	font-size:11px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+#mente_profile_input_td_submit
+{
+	background-color:#ffffff;
+	padding-top: 10px;
+	text-align: left;
+	font-size:11px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+#profile
+{
+	border:0px;
+	background-color: #FFFFFF;
+	width: 480px;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align:center;
+	font-family:Verdana;
+}
+
+#profile_table
+{
+	background-color:#ffffff;
+	width:100%;
+	border:1px solid #3399FF;
+	text-align: center;
+	border-collapse:collapse;
+}
+
+#profile_image
+{
+	text-align: center;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+#profile_td_left
+{
+	background-color:#ffffff;
+	width:25%;
+	text-align: right;
+	font-size:14px;
+	vertical-align: top;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+#profile_td_right
+{
+	background-color:#ffffff;
+	width:75%;
+	text-align: left;
+	vertical-align: top;
+	font-size:14px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+#mente_favorite_input
+{
+	border:0px;
+	background-color: #FFFFFF;
+	width: 420px;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align:center;
+	font-family:Verdana;
+}
+
+#mente_favorite_input_table
+{
+	background-color:#ffffff;
+	width:100%;
+	border:1px solid #3399FF;
+	text-align: center;
+	border-collapse:collapse;
+}
+
+#mente_favorite_input_td_left
+{
+	background-color:#ffffff;
+	width:40%;
+	text-align: center;
+	font-size:13px;
+	padding-top: 2px;
+	padding-bottom: 3px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+#mente_favorite_input_td_right
+{
+	background-color:#ffffff;
+	width:60%;
+	text-align: left;
+	font-size:13px;
+	padding-top: 2px;
+	padding-bottom: 3px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+#mente_favorite_input_td_submit
+{
+	background-color:#ffffff;
+	padding-top: 10px;
+	text-align: center;
+	font-size:11px;
+	padding-bottom: 8px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+#img_list_head
+{
+	font-family:Verdana;
+	margin:0px auto 0px auto;
+	width:100%;
+	height:100%;
+	background-color: #FFFFFF;
+	color:#585858;
+}
+
+#mente_img_input
+{
+	border:0px;
+	background-color: #FFFFFF;
+	width: 500px;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align:center;
+	font-family:Verdana;
+}
+
+#mente_img_input_example
+{
+	border:0px;
+	background-color: #FFFFFF;
+	margin-top: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	padding-top: 0px;
+	padding-bottom: 10px;
+	text-align:left;
+	font-size:12px;
+	font-family:Verdana;
+}
+
+#mente_img_input_table
+{
+	background-color:#ffffff;
+	width:100%;
+	border:1px solid #3399FF;
+	text-align: center;
+	border-collapse:collapse;
+}
+
+#mente_img_input_td_left
+{
+	background-color:#ffffff;
+	width:10%;
+	text-align: center;
+	font-size:13px;
+	padding-top: 3px;
+	padding-bottom: 5px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+#mente_img_input_td_center
+{
+	background-color:#ffffff;
+	width:30%;
+	text-align: center;
+	font-size:13px;
+	padding-top: 3px;
+	padding-bottom: 5px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+#mente_img_input_td_right
+{
+	background-color:#ffffff;
+	width:60%;
+	text-align: center;
+	font-size:13px;
+	padding-top: 3px;
+	padding-bottom: 5px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+#mente_imgup_input_td
+{
+	background-color:#ffffff;
+	width:10%;
+	text-align: left;
+	font-size:13px;
+	padding-top: 8px;
+	padding-bottom: 3px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+#mente_img_input_td_submit
+{
+	background-color:#ffffff;
+	padding-top: 10px;
+	text-align: center;
+	font-size:11px;
+	padding-bottom: 8px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+#mente_calender_input
+{
+	border:0px;
+	background-color: #FFFFFF;
+	width: 350px;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align:center;
+	font-family:Verdana;
+}
+
+#mente_calender_input_table
+{
+	background-color:#ffffff;
+	width:100%;
+	border:1px solid #3399FF;
+	text-align: center;
+	border-collapse:collapse;
+}
+
+#mente_calender_input_td_left
+{
+	background-color:#ffffff;
+	width:40%;
+	text-align: center;
+	font-size:13px;
+	padding-top: 3px;
+	padding-bottom: 5px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+#mente_calender_input_td_right
+{
+	background-color:#ffffff;
+	width:60%;
+	text-align: left;
+	font-size:13px;
+	padding-top: 3px;
+	padding-bottom: 5px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+#mente_calender_input_td_new
+{
+	background-color:#ffffff;
+	padding-top: 10px;
+	text-align: center;
+	font-size:14px;
+	padding-bottom: 8px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+#mente_calender_input_td_submit
+{
+	background-color:#ffffff;
+	padding-top: 10px;
+	text-align: center;
+	font-size:11px;
+	padding-bottom: 8px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+#mente_free_input
+{
+	border:0px;
+	background-color: #FFFFFF;
+	width: 450px;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align:center;
+	font-family:Verdana;
+}
+
+#mente_free_input_table
+{
+	background-color:#ffffff;
+	width:100%;
+	border:1px solid #3399FF;
+	text-align: center;
+	border-collapse:collapse;
+}
+
+#mente_free_input_td
+{
+	background-color:#ffffff;
+	width:100%;
+	text-align: center;
+	font-size:11px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+#mente_free_input_td_submit
+{
+	background-color:#ffffff;
+	padding-top: 10px;
+	text-align: center;
+	font-size:11px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+#title a
+{
+	color:#FFFFFF;
+	text-decoration: none;
+	font-weight:bolder;
+}
+
+a:link
+{
+	color:#0000FF;
+	text-decoration:underline;
+}
+a:visited
+{
+	color:#0000FF;
+	text-decoration:underline;
+}
+
+a:hover
+{
+	color:#ff0080;
+	text-decoration:underline;
+}

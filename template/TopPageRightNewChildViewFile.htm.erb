@@ -1,0 +1,25 @@
+<div id="sidetitle">最近の返信</div>
+<% 
+	new_cnt = 0
+	newchild_html = "<div id=\"new_child\"><br>"
+	child_list.each_index do |chi_key|
+		if(parentid[child_list[chi_key]['parid']] == 1)
+		else
+			next
+		end
+		year = child_list[chi_key]['created_at'][0..3]
+		month = child_list[chi_key]['created_at'][4..5]
+		day = child_list[chi_key]['created_at'][6..7]
+		newchild_html = <<"__END"
+		#{newchild_html}
+		<a href="#{@yaml['Url']}?edit_num=#{child_list[chi_key]['parid']}#comment-#{child_list[chi_key]['id']}">#{child_list[chi_key]['subject']}</a> (#{year}/#{month}/#{day})<br>
+		<br>
+__END
+		new_cnt = new_cnt + 1
+		if(new_cnt >= 5)
+			break
+		end
+	end
+	newchild_html = "#{newchild_html}</div>"
+ %>
+<%= newchild_html %>

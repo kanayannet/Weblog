@@ -1,0 +1,67 @@
+<%= @PageHeadView %>
+<div id="mente_top">
+<table id="mente_table">
+<tr id="mente_tr">
+<form action="<%= @yaml['Url'] %>" method="POST">
+<input type="hidden" name="mode" value="ArticleWriteInput">
+<td id="mente_td">
+<button type="submit" id="mente_button">記事を書く</button>
+</td></form>
+<form action="<%= @yaml['Url'] %>" method="POST">
+<input type="hidden" name="mode" value="ArticleList">
+<td id="mente_td">
+<button type="submit" id="mente_button">記事一覧から管理する</button>
+</td></form>
+</tr>
+<tr id="mente_tr">
+<form action="<%= @yaml['Url'] %>" method="POST">
+<input type="hidden" name="mode" value="ProfileWriteInput">
+<td id="mente_td">
+<button type="submit" id="mente_button">プロフィールの設定</button>
+</td></form>
+<form action="<%= @yaml['Url'] %>" method="POST">
+<input type="hidden" name="mode" value="FavoriteWriteInput">
+<td id="mente_td">
+<button type="submit" id="mente_button">お気に入りの設定</button>
+</td></form>
+</tr>
+<tr>
+<form action="<%= @yaml['Url'] %>" method="POST">
+<input type="hidden" name="mode" value="ImageWriteInput">
+<td id="mente_td">
+<button type="submit" id="mente_button">画像を管理する</button>
+</td></form>
+<form action="<%= @yaml['Url'] %>" method="POST">
+<input type="hidden" name="mode" value="HolidayWriteInput">
+<td id="mente_td">
+<button type="submit" id="mente_button">休日・祝日を管理する</button>
+</td></form>
+</tr>
+<tr>
+<form action="<%= @yaml['Url'] %>" method="POST">
+<input type="hidden" name="mode" value="ResArticleList">
+<td id="mente_td">
+<button type="submit" id="mente_button">返信一覧から管理する</button>
+</td></form>
+<form action="<%= @yaml['Url'] %>" method="POST">
+<input type="hidden" name="mode" value="TrackBackList">
+<td id="mente_td">
+<button type="submit" id="mente_button">TrackBack一覧から管理する</button>
+</td></form>
+</tr>
+<tr>
+<form action="<%= @yaml['Url'] %>" method="POST">
+<input type="hidden" name="mode" value="LeftSideWriteInput">
+<td id="mente_td">
+<button type="submit" id="mente_button">左自由入力欄を設定</button>
+</td></form>
+<form action="<%= @yaml['Url'] %>" method="POST">
+<input type="hidden" name="mode" value="RightSideWriteInput">
+<td id="mente_td">
+<button type="submit" id="mente_button">右自由入力欄を設定</button>
+</td></form>
+</tr>
+</table>
+</div>
+<%= @PageFootView %></div>
+</body></html>

@@ -1,0 +1,38 @@
+<%= @PageHeadView %>
+<script language="javascript">
+<!--
+function LeftFreeExec()
+	{
+		if(confirm('このまま設定しますが、よろしいですか？'))
+		{
+			document.nform.submit();
+		}
+	}
+//-->
+</script>
+<div id="mente_free_input">
+※ 左自由入力欄 (ブログパーツ や 広告にご利用ください。)
+<br>
+<font color="#FF0000"><b>&lt;div&gt; &lt;textarea&gt;</b> タグを使うとデザインが崩れる恐れがあります。</font>
+<br>&nbsp;
+<table id="mente_free_input_table">
+<tr>
+<form action="<%= @yaml['Url'] %>" method="post" name="nform">
+<input type="hidden" name="mode" value="LeftFreeExec">
+<td id="mente_free_input_td">
+<textarea id="article" name="article" rows="7" cols="40"><%= left %></textarea><br>
+</td></tr>
+<tr>
+<td id="mente_free_input_td_submit">
+<input type="button" value="設定する" onclick="LeftFreeExec();"><br>&nbsp;
+</td></form>
+</tr>
+</table>
+<br>
+<form action="<%= @yaml['Url'] %>" method="get">
+<input type="hidden" name="mode" value="mente_top">
+<input type="submit" value="管理画面TOPに戻る">
+</form>
+</div>
+<%= @PageFootView %></div>
+</body></html>

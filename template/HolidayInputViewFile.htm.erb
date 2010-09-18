@@ -1,0 +1,104 @@
+<% 
+	#休日リスト
+	holiday_list_html = ""
+	holiday_read.each_index do |cnt|
+				
+		holiday_list_html = <<"__END"
+		#{holiday_list_html}
+		<tr>
+		<td id="mente_calender_input_td_left">
+		<input type="checkbox" name="cal_#{holiday_read[cnt]['id']}" value="1">
+		</td>
+		<td id="mente_calender_input_td_right">
+		#{holiday_read[cnt]['year']} / #{holiday_read[cnt]['month']} / #{holiday_read[cnt]['day']}
+		</td>
+		</tr>
+__END
+	end
+	
+	#新規入力View
+	holiday_html = <<"__END"
+	<select name="year">
+	<option value="">年</option>
+__END
+	for i in (@logic.year.to_i - 2)..(@logic.year.to_i + 2)
+		
+		holiday_html = <<"__END"
+		#{holiday_html}
+		<option value="#{i}" >#{i}年</option>
+__END
+	end
+	holiday_html = <<"__END"
+	#{holiday_html}
+	</select>&nbsp;<select name="month">
+	<option value="">月</option>
+__END
+	for i in 1..12
+		
+		holiday_html = <<"__END"
+		#{holiday_html}
+		<option value="#{i}" >#{i}月</option>
+__END
+	end
+	holiday_html = <<"__END"
+	#{holiday_html}
+	</select>&nbsp;<select name="day">
+	<option value="">日</option>
+__END
+	for i in 1..31
+		
+		holiday_html = <<"__END"
+		#{holiday_html}
+		<option value="#{i}" >#{i}日</option>
+__END
+	end
+	holiday_html = <<"__END"
+	#{holiday_html}
+	</select>
+__END
+ %>
+<%= @PageHeadView %>
+<script languege="javascript">
+<!--
+	function CalExec()
+	{
+		if(confirm('このまま、設定しますが\nよろしいですか？'))
+		{
+			document.nform.submit();
+		}
+	}
+//-->
+</script>
+
+<div id="mente_calender_input">
+<br>&nbsp;
+<table id="mente_calender_input_table">
+<tr>
+<form action="<%= @yaml['Url'] %>" method="post" name="nform">
+<input type="hidden" name="mode" value="CalExec">
+<td id="mente_calender_input_td_left">
+削除
+</td>
+<td id="mente_calender_input_td_right">
+休日設定 年月日
+</td>
+</tr>
+<%= holiday_list_html %>
+<td id="mente_calender_input_td_new" colspan="2">
+新規休日：<%= holiday_html %>
+</td>
+</tr>
+<tr>
+<td id="mente_calender_input_td_submit" colspan="2">
+<input type="button"  value="設定する" onclick="CalExec();">
+</td></form>
+</tr>
+</table>
+<br>
+<form action="<%= @yaml['Url'] %>" method="get">
+<input type="hidden" name="mode" value="mente_top">
+<input type="submit" value="管理画面TOPに戻る">
+</form>
+</div>
+<%= @PageFootView %></div>
+</body></html>

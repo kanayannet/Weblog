@@ -1,0 +1,22 @@
+<html>
+<title>
+<%= h title %>
+</title>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="paragma" content="no-cache">
+<meta name="description" content="<%= h description %>">
+<link rel="stylesheet" href="<%= cssurl %>" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<%= @yaml['Url'] %>?mode=Rss" />
+</head>
+<body>
+<div id="all">
+<div id="title">
+<h1>
+<a href="<%= url %>">
+<%= h title %></a>
+</h1>
+<span id="description">
+<%= h description %>
+</span>
+</div>

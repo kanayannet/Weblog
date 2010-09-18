@@ -1,0 +1,67 @@
+<% 
+	#親記事がある時に表示
+	input_form = ""
+	parent_list.each_index do |par_key|
+			
+		#記事番号指定の表示
+		if(cgi['edit_num'] == parent_list[par_key]['id'])
+			input_form =<<"__END"
+			<script language="javascript">
+			<!--
+				function ResPreviewExec()
+				{
+					document.nform.ResPreviewSubmit.value = '1';
+					window.open('#{@yaml['Url']}','weblog','toolbar=no,location=no,status=no,width=900,height=700');
+					document.nform.target = 'weblog';
+					document.nform.focus();
+					document.nform.submit();
+				}
+				function ResExec()
+				{
+					document.nform.target = ''
+					document.nform.ResPreviewSubmit.value = '';
+					document.nform.focus();
+					document.nform.submit();
+				}
+			//-->
+			</script>
+			<div id="input_form"><br><br>
+			<a name="res-#{cgi['edit_num']}">この記事へ返信</a><br>&nbsp;
+			<table id="FormRes">
+			<form action="#{@yaml['Url']}" method="POST" name="nform">
+			<input type="hidden" name="mode" value="Res">
+			<input type="hidden" name="edit_num" value="#{cgi['edit_num']}">
+			<tr><td id="FormResTdLeft">
+			Subject:</td>
+			<td id="FormResTdRight">
+			<input type="text" name="subject" value="" size="20">
+			</td>
+			</tr>
+			<tr>
+			<td id="FormResTdLeft">Name:</td>
+			<td id="FormResTdRight">
+			<input type="text" name="name" value="" size="20"></td>
+			</tr>
+			<tr>
+			<td id="FormResTdLeft">
+			Comment:</td>
+			<td id="FormResTdRight">
+			<textarea name="comment" cols="30" rows="10"></textarea>
+			</td>
+			</tr>
+			<tr>
+			<td colspan="2" id="FormResTdSubmit">
+			<input type="hidden" name="ResPreviewSubmit" value="">
+			<input type="button" value="プレビュー" onclick="ResPreviewExec();">&nbsp;&nbsp;
+			<input type="button" value="返信する" onclick="ResExec();">
+			</td>
+			</tr>
+			</form>
+			</tr></table><br><br>
+			</div>
+__END
+			break
+		end
+	end
+ %>
+<%= input_form %>

@@ -1,0 +1,110 @@
+<% 
+	#記事数を取得(表示ページを得る)
+	pagemax = parent_list.length - 1
+	#page数 = 記事数 / 5
+	pages = pagemax / 5
+	if(/\./=~pages.to_s)
+		pages = (pages + 1).to_i
+	end
+	start = 0
+	i = 0
+	if(/^\d+$/=~cgi['page'])
+		start = cgi['page'].to_i
+	end
+			
+	for page in 0..pages
+		hy_page = (page + 1).to_s
+		if(page == start)
+		else
+			hy_page = <<"__END"
+			<a href="#{@yaml['Url']}?mode=ArticleList&page=#{page}">#{hy_page}</a>
+__END
+		end
+		article_list_html = <<"__END"
+		#{article_list_html}
+		#{hy_page} |
+__END
+	end
+			
+	article_list_html = article_list_html , '<br><br>'
+			
+	parent_list.each_index do |cnt|
+				
+		if((start * 5) > cnt)
+			next
+		end
+		subject = @logic.SubjectConvert(@logic.StrCut(parent_list[cnt]['subject'],10))
+		article = @logic.ResArticleConvert(@logic.StrCut(parent_list[cnt]['article'],20))
+		pyear = parent_list[cnt]['created_at'][0..3]
+		pmonth = parent_list[cnt]['created_at'][4..5]
+		pday = parent_list[cnt]['created_at'][6..7]
+		phour = parent_list[cnt]['created_at'][8..9]
+		pmin = parent_list[cnt]['created_at'][10..11]
+		psec = parent_list[cnt]['created_at'][12..13]
+		article_list_html = <<"__END"
+		#{article_list_html}
+		<div id="center_text1">
+		<h2 id="date">#{pyear}/#{pmonth}/#{pday} #{phour}:#{pmin}:#{psec}</h2>
+		<div id="center_text2">
+		#{subject}
+		<div id="center_text3"><br />#{article}</div>
+		<script languege="javascript">
+		<!--
+			function delete#{i}()
+			{
+				if( confirm('このまま削除しますがよろしいですか？') )
+				{
+					document.nform#{i}.deleted.value = 1;
+					document.nform#{i}.submit();
+				}
+			}
+		//-->
+		</script>
+		<br><form action="#{@yaml['Url']}" method="POST" name="nform#{i}">
+		<input type="hidden" name="mode" value="ChangeOrDelete">
+		<input type="hidden" name="edit_num" value="#{parent_list[cnt]['id']}">
+		<input type="hidden" name="deleted" value="">
+		<input type="submit" name="change" value="修正">&nbsp;&nbsp;
+		<input type="button" value="削除" onclick="delete#{i}();"></form>
+		</div>
+		</div>
+__END
+		i = i + 1
+		if(i >= 5)
+			break
+		end
+	end
+		
+	article_list_html = article_list_html , '<br><br>'
+		
+	for page in 0..pages
+		hy_page = (page + 1).to_s
+		if(page == start)
+		else
+			hy_page = <<"__END"
+			<a href="#{@yaml['Url']}?mode=ArticleList&page=#{page}">#{hy_page}</a>
+__END
+		end
+		article_list_html = <<"__END"
+		#{article_list_html}
+		#{hy_page} |
+__END
+	end
+ %>
+
+<%= @PageHeadView %>
+<br>
+<div id="left_menu">
+&nbsp;
+</div>
+<div id="center_menu">
+<%= article_list_html %><br><br>
+<form action="<%= @yaml['Url'] %>" method="get">
+<input type="hidden" name="mode" value="mente_top">
+<input type="submit" value="管理画面TOPに戻る">
+</form>
+<%= @PageFootView %></div>
+<div id="right_menu">
+&nbsp;
+</div></div>
+</body></html>

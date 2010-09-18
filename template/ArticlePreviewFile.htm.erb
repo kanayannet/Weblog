@@ -1,0 +1,30 @@
+<html>
+<title>
+プレビュー
+</title>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="paragma" content="no-cache">
+<meta name="description" content="<%= h @yaml['Description'] %>">
+<link rel="stylesheet" href="<%= @yaml['CssUrl'] %>" type="text/css" />
+</head>
+<body>
+<div id="all">
+<br>
+<div id="left_menu">
+&nbsp;
+</div>
+<div id="center_menu">
+<div id="center_text1">
+<h2 id="date"><%= @logic.year %>/<%= @logic.month %>/<%= @logic.day %> <%= @logic.hour %>:<%= @logic.min %>:<%= @logic.sec %></h2>
+<div id="center_text2">
+<a href="#"><%= @logic.SubjectConvert(cgi['subject']) %></a>
+&nbsp;&nbsp;<a href="#">comment</a>
+<div id="center_text3"><br /><%= @logic.ParentArticleConvert(cgi['article']) %><br><br></div>
+</div><br><br>
+</div><input type="button" value="この画面を閉じる" onclick="window.close();"><br><br>
+<%= @PageFootView %></div>
+<div id="right_menu">
+&nbsp;
+</div></div>
+</body></html>

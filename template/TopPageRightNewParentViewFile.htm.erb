@@ -1,0 +1,21 @@
+<div id="sidetitle">最近の記事</div>
+<% 
+	new_cnt = 0
+	newparent_html = "<div id=\"new_parent\"><br>"
+	parent_list.each_index do |par_key|
+	    year = parent_list[par_key]['created_at'][0..3]
+	    month = parent_list[par_key]['created_at'][4..5]
+	    day = parent_list[par_key]['created_at'][6..7]
+	    newparent_html = <<"__END"
+	    #{newparent_html}
+	    <a href="#{@yaml['Url']}?edit_num=#{parent_list[par_key]['id']}">#{parent_list[par_key]['subject']}</a> (#{year}/#{month}/#{day})<br>
+	    <br>
+__END
+	    new_cnt = new_cnt + 1
+	    if(new_cnt >= 5)
+	    	break
+	    end
+	end
+	newparent_html = "#{newparent_html}</div>"
+ %>
+<%= newparent_html %>

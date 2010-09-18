@@ -1,0 +1,160 @@
+<%= @PageHeadView %>
+<script language="javascript">
+<!--
+function emoji_icon_exec( Emoji_id )
+{
+	if(!Emoji_id)
+	{
+		return;
+	}
+	document.getElementById(Emoji_id).style.display = 'none';
+}
+	
+function emoji_icon_view( Emoji_id )
+{
+	document.getElementById(Emoji_id).style.display = 'block';
+}
+	
+function emoji_icon_input(inp_word)
+{
+	var profile_text = document.nform.profile_text.value;
+	var tarea = document.getElementById('profile_text');
+	tarea.focus();
+	if (/*@cc_on!@*/false)
+	{
+		// IE
+		var ie = document.selection.createRange();
+		ie.text = inp_word;
+		ie.select();
+	} else
+	{
+		var at = tarea.selectionStart;
+		var tmp = profile_text.substr(0, at);
+		tarea.value = tmp + inp_word + profile_text.substr(at, profile_text.length);
+	}
+}
+function preview()
+{
+	document.nform.profile_preview.value = '1';
+	window.open('<%= @yaml['Url'] %>','weblog','toolbar=no,location=no,status=no,width=900,height=700');
+	document.nform.target = 'weblog';
+	document.nform.focus();
+	document.nform.submit();
+}
+function exec()
+{
+	document.nform.profile_preview.value = '';
+	document.nform.target = '';
+	document.nform.submit();
+}
+//-->
+</script>
+<div id="mente_profile_input">
+<table id="mente_profile_input_table">
+<tr>
+<form action="<%= @yaml['Url'] %>" method="post" name="nform" enctype="multipart/form-data">
+<input type="hidden" name="mode" value="ProfileExec">
+<td id="mente_profile_input_td_left">
+お名前:
+</td>
+<td id="mente_profile_input_td_right">
+<input type="text" name="name" value="<%= name %>" size="35">
+</td>
+</tr>
+<tr>
+<td id="mente_profile_input_td_left">
+URL:
+</td>
+<td id="mente_profile_input_td_right">
+<input type="text" name="url" value="<%= url %>" size="35">
+</td>
+</tr>
+<tr>
+<td id="mente_profile_input_td_left">
+趣味:
+</td>
+<td id="mente_profile_input_td_right">
+<input type="text" name="hobby" value="<%= hobby %>" size="60">
+</td>
+</tr>
+<tr>
+<td id="mente_profile_input_td_left">
+一言メッセージ:
+</td>
+<td id="mente_profile_input_td_right">
+<textarea id="profile_text" name="profile_text" rows="7" cols="40"><%= profile %></textarea><br>
+<script language="javascript">
+<!--
+with (document)
+{
+	write('<a href="javascript: emoji_icon_view(\'emoji\')"><font size="2">顔文字</font></a>');
+}
+//-->
+</script><br>
+<div id="emoji" style="border: 0px solid #ddf0f8; padding: 0px; none repeat scroll 0%; background-color: #F0FFFF;  cursor: pointer; width: 350px; display: none; position: absolute;">
+<script language="javascript">
+<!--
+with (document)
+{
+	write('<a href="javascript: emoji_icon_input(\'(´∀｀)\');">(´∀｀)</a>&nbsp;&nbsp;');
+	write('<a href="javascript: emoji_icon_input(\'(･ω･´)\');">(･ω･´)</a>&nbsp;&nbsp;');
+	write('<a href="javascript: emoji_icon_input(\'(o┤*´Д｀*├o)\');">o┤*´Д｀*├o</a>&nbsp;&nbsp;');
+	write('<a href="javascript: emoji_icon_input(\'(;ﾟ;Д;ﾟ;)\');">(;ﾟ;Д;ﾟ;)</a>&nbsp;&nbsp;');
+	write('<a href="javascript: emoji_icon_input(\'ヾ(^ω^*) \');">ヾ(^ω^*) </a><br>');
+	write('<a href="javascript: emoji_icon_input(\'(-ω-)\');">(-ω-)</a>&nbsp;&nbsp;');
+	write('<a href="javascript: emoji_icon_input(\'ヽ［・∀・］ノ\');">ヽ［・∀・］ノ</a>&nbsp;&nbsp;');
+	write('<a href="javascript: emoji_icon_input(\'ｏ(*≧∇≦)ﾉ\');">ｏ(*≧∇≦)ﾉ</a>&nbsp;&nbsp;');
+	write('<a href="javascript: emoji_icon_input(\'(^Д^)ゞ\');">(^Д^)ゞ</a>&nbsp;&nbsp;');
+	write('<a href="javascript: emoji_icon_exec(\'emoji\')"><font size=1>閉じる</font></a>');
+}
+//-->
+</script></div>
+</td>
+</tr>
+<tr>
+<td id="mente_profile_input_td_left">
+プロフィール画像:
+</td>
+<td id="mente_profile_input_td_right">
+<input type="file" name="image" size="40">
+<br>横幅:
+<select name="width">
+<option value="200">200px</option>
+<option value="150">150px</option>
+<option value="100">100px</option>
+<option value="50">50px</option>
+<option value="40">40px</option>
+<option value="30">30px</option>
+<option value="20">20px</option>
+<option value="10">10px</option>
+</select>&nbsp;
+高さ:
+<select name="height">
+<option value="200">200px</option>
+<option value="150">150px</option>
+<option value="100">100px</option>
+<option value="50">50px</option>
+<option value="40">40px</option>
+<option value="30">30px</option>
+<option value="20">20px</option>
+<option value="10">10px</option>
+</select>
+</td>
+</tr>
+<tr>
+<td></td>
+<td id="mente_profile_input_td_submit">
+<input type="hidden" name="profile_preview" value="">
+<input type="button" value="プレビュー" onclick="preview();">&nbsp;&nbsp;
+<input type="button" value="設定する" onclick="exec();">
+</td></form>
+</tr>
+</table>
+<br>
+<form action="<%= @yaml['Url'] %>" method="get">
+<input type="hidden" name="mode" value="mente_top">
+<input type="submit" value="管理画面TOPに戻る">
+</form>
+</div>
+<%= @PageFootView %></div>
+</body></html>

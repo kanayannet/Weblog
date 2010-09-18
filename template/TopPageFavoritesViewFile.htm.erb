@@ -1,0 +1,15 @@
+<div id="sidetitle">My Favorites Page</div>
+<div id="my_favorites">
+<br>
+<% 
+      #‘½ŸŒ³”z—ñ‚Ìƒ‹[ƒv
+      favoraites_html = ""
+      fav_read.each_index do |fav_key|
+	if(fav_read[fav_key]['name'] == "")
+		next
+	end
+        favoraites_html = favoraites_html + "<a href=\"#{fav_read[fav_key]['url']}\" target=\"_blank\">#{fav_read[fav_key]['name']}</a><br><br>"
+      end
+ %>
+<%= favoraites_html %>
+</div>

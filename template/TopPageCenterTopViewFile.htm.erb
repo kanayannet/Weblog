@@ -1,0 +1,60 @@
+<% 
+	parent_html = ""
+	par_cnt = 0
+	parent_list.each_index do |par_key|
+		if(cgi['edit_num'] != "")
+			#記事番号指定の表示
+			if(cgi['edit_num'] == parent_list[par_key]['id'])
+			else
+				next
+			end
+		end
+		if((cgi['year'].to_s != "")&&(cgi['month'].to_s != "")&&(cgi['day'].to_s != ""))
+			#年月日指定の表示
+ 			if("#{cgi['year'].to_s}#{sprintf("%02d",cgi['month'].to_i)}#{sprintf("%02d",cgi['day'].to_i)}" == parent_list[par_key]['created_at'][0..7])
+			else
+				next
+			end
+		end
+		subject = @logic.SubjectConvert(parent_list[par_key]['subject'])
+		article = @logic.ParentArticleConvert(parent_list[par_key]['article'])
+		pyear = parent_list[par_key]['created_at'][0..3]
+		pmonth = parent_list[par_key]['created_at'][4..5]
+		pday = parent_list[par_key]['created_at'][6..7]
+		phour = parent_list[par_key]['created_at'][8..9]
+		pmin = parent_list[par_key]['created_at'][10..11]
+		psec = parent_list[par_key]['created_at'][12..13]
+		parent_html = <<"__END"
+		#{parent_html}
+		<div id="center_text1">
+		<h2 id="date">#{pyear}/#{pmonth}/#{pday} #{phour}:#{pmin}:#{psec}</h2>
+		<div id="center_text2">
+		<a href="#{@yaml['Url']}?edit_num=#{parent_list[par_key]['id']}">#{subject}</a>
+		&nbsp;&nbsp;<a href="#{@yaml['Url']}?edit_num=#{parent_list[par_key]['id']}#res-#{parent_list[par_key]['id']}">comment</a>
+		<div id="center_text3"><br />#{article}<br>&nbsp;</div>
+		</div><br><br>
+		</div>
+__END
+		if(cgi['edit_num'] == parent_list[par_key]['id'])
+			break
+		end
+		
+		par_cnt = par_cnt + 1
+		if(par_cnt >= @yaml['MaxParentPage'])
+			break
+		end
+	end
+	#記事が無かったら・・
+	if(parent_html == "")
+		parent_html = <<"__END"
+		<div id="center_text1">
+		<h2 id="date">Not Input Article</h2>
+		<div id="center_text2">
+		<div id="center_text3"><br />表示する記事がありません。<br><br><br>&nbsp;</div>
+		</div>
+		</div>
+__END
+	end
+
+ %>
+<%= parent_html %>

@@ -1,0 +1,79 @@
+<%= @PageHeadView %>
+<script languege="javascript">
+<!--
+	function FavoriteExec()
+	{
+		if(confirm('このまま、お気に入り登録しますが\nよろしいですか？'))
+		{
+			document.nform.submit();
+		}
+	}
+//-->
+</script>
+
+<div id="mente_favorite_input">
+<table id="mente_favorite_input_table">
+<tr>
+<form action="<%= @yaml['Url'] %>" method="post" name="nform">
+<input type="hidden" name="mode" value="FavoriteExec">
+<td id="mente_favorite_input_td_left">
+サイト名
+</td>
+<td id="mente_favorite_input_td_right">
+URL
+</td>
+</tr>
+<tr>
+<td id="mente_favorite_input_td_left">
+<input type="text" name="name<%= favorites[0]['id'] %>" value="<%= h favorites[0]['name'] %>" size="25">
+</td>
+<td id="mente_favorite_input_td_right">
+<input type="text" name="url<%= favorites[0]['id'] %>" value="<%= favorites[0]['url'] %>" size="45">
+</td>
+</tr>
+<tr>
+<td id="mente_favorite_input_td_left">
+<input type="text" name="name<%= favorites[1]['id'] %>" value="<%= h favorites[1]['name'] %>" size="25">
+</td>
+<td id="mente_favorite_input_td_right">
+<input type="text" name="url<%= favorites[1]['id'] %>" value="<%= favorites[1]['url'] %>" size="45">
+</td>
+</tr>
+<tr>
+<td id="mente_favorite_input_td_left">
+<input type="text" name="name<%= favorites[2]['id'] %>" value="<%= h favorites[2]['name'] %>" size="25">
+</td>
+<td id="mente_favorite_input_td_right">
+<input type="text" name="url<%= favorites[2]['id'] %>" value="<%= favorites[2]['url'] %>" size="45">
+</td>
+</tr>
+<tr>
+<td id="mente_favorite_input_td_left">
+<input type="text" name="name<%= favorites[3]['id'] %>" value="<%= h favorites[3]['name'] %>" size="25">
+</td>
+<td id="mente_favorite_input_td_right">
+<input type="text" name="url<%= favorites[3]['id'] %>" value="<%= favorites[3]['url'] %>" size="45">
+</td>
+</tr>
+<tr>
+<td id="mente_favorite_input_td_left">
+<input type="text" name="name<%= favorites[4]['id'] %>" value="<%= h favorites[4]['name'] %>" size="25">
+</td>
+<td id="mente_favorite_input_td_right">
+<input type="text" name="url<%= favorites[4]['id'] %>" value="<%= favorites[4]['url'] %>" size="45">
+</td>
+</tr>
+<tr>
+<td id="mente_favorite_input_td_submit" colspan="2">
+<input type="button" value="設定する" onclick="FavoriteExec();">
+</td></form>
+</tr>
+</table>
+<br>
+<form action="<%= @yaml['Url'] %>" method="get">
+<input type="hidden" name="mode" value="mente_top">
+<input type="submit" value="管理画面TOPに戻る">
+</form>
+</div>
+<%= @PageFootView %></div>
+</body></html>

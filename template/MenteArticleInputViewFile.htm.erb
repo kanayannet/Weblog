@@ -1,0 +1,346 @@
+<%= @PageHeadView %>
+<script language="javascript">
+<!--
+function button_click(param)
+{
+	var youtube_str = '{movie_url:';
+	if(param == 'youtube')
+	{
+		//youtubeだったら
+		var article = document.nform.article.value;
+		var tarea = document.getElementById('article');
+		tarea.focus();
+		if (/*@cc_on!@*/false)
+		{
+			// IE
+			ie = document.selection.createRange();
+			var range = ie.text;
+			if(range == "")
+			{
+				range = "ここにyoutubeURL";
+			}
+			var ret = range.match(/\r\n|\r|\n/g);
+			var len_txt = range.length;
+			if ( ret ) len_txt -= ret.length;
+			
+			ie.text = youtube_str + range + '}';
+			ie.move('character', - (len_txt + 1));
+			ie.moveEnd('character', len_txt);
+			ie.select();
+		}else
+		{
+			var start = tarea.selectionStart;
+			var end = tarea.selectionEnd;
+			var scrollTop = tarea.scrollTop;
+			var tmp = article.substr(0, start);
+			var range = article.slice( start, end);
+			if(range == "")
+			{
+				range = "ここにyoutubeURL";
+			}
+			tarea.value = tmp + youtube_str + range +'}' + article.substr(start + range.length,article.length);
+			tarea.setSelectionRange(tmp.length + youtube_str.length,tmp.length + youtube_str.length + range.length);
+			tarea.scrollTop = scrollTop;
+
+		}
+	}
+}
+
+function image_puts()
+{
+	var rand = Math.floor(Math.random() * 100);
+	var tag = window.showModalDialog('<%= @yaml['Url'] %>?mode=ImageWriteInput&winopen_flag=1&rand='+rand,document,'dialogHeight:750px;dialogWidth:750px');
+	if(!tag)
+	{
+		return;
+	}
+	var tarea = document.getElementById('article');
+	tarea.focus();
+	if (/*@cc_on!@*/false)
+	{
+		// IE
+		var ie = document.selection.createRange();
+		ie.text = tag;
+		ie.select();
+	} else
+	{
+		var article = document.nform.article.value;
+		var at = tarea.selectionStart;
+		var scrollTop = tarea.scrollTop;
+		var tmp = article.substr(0, at);
+		tarea.value = tmp + tag + article.substr(at, article.length);
+		tarea.scrollTop = scrollTop;
+	}
+}
+
+function emoji_icon_view( Emoji_id )
+{
+	document.getElementById(Emoji_id).style.display = 'block';
+}
+function emoji_icon_exec( Emoji_id )
+{
+	if(!Emoji_id)
+	{
+		return;
+	}
+	document.getElementById(Emoji_id).style.display = 'none';
+}
+function emoji_icon_input(inp_word,id)
+{
+	var article = document.nform.article.value;
+	var tarea = document.getElementById('article');
+	tarea.focus();
+	if (/*@cc_on!@*/false)
+	{
+		// IE
+		var ie = document.selection.createRange();
+		ie.text = inp_word;
+		ie.select();
+	} else
+	{
+		var at = tarea.selectionStart;
+		var scrollTop = tarea.scrollTop;
+		var tmp = article.substr(0, at);
+		tarea.value = tmp + inp_word + article.substr(at, article.length);
+		tarea.scrollTop = scrollTop;
+	}
+	emoji_icon_exec(id);
+}
+function Color_font_view( Color_id )
+{
+	document.getElementById(Color_id).style.display = 'block';
+}
+function font_exec( Color_id )
+{
+	if(!Color_id)
+	{
+		return;
+	}
+	document.getElementById(Color_id).style.display = 'none';
+}
+function font_tag_input(inp_word,id)
+{
+	var article = document.nform.article.value;
+	var tarea = document.getElementById('article');
+	tarea.focus();
+	if (/*@cc_on!@*/false)
+	{
+		// IE
+		ie = document.selection.createRange();
+		var range = ie.text;
+		var ret = range.match(/\r\n|\r|\n/g);
+		var len_txt = range.length;
+		if ( ret ) len_txt -= ret.length;
+			
+		ie.text = inp_word + range + '{font_end}';
+		ie.move('character', - (len_txt + 10));
+		ie.moveEnd('character', len_txt);
+		ie.select();
+	} else
+	{
+		var start = tarea.selectionStart;
+		var end = tarea.selectionEnd;
+		var scrollTop = tarea.scrollTop;
+		var tmp = article.substr(0, start);
+		var range = article.slice( start, end);
+		tarea.value = tmp + inp_word + range +'{font_end}' + article.substr(start + range.length,article.length);
+		tarea.setSelectionRange(tmp.length + inp_word.length,tmp.length + inp_word.length + range.length);
+		tarea.scrollTop = scrollTop;
+	}
+	font_exec(id);
+}
+function table_tag_input()
+{
+	var article = document.nform.article.value;
+	var tarea = document.getElementById('article');
+	var inp_word = "\n{table}";
+	tarea.focus();
+	if (/*@cc_on!@*/false)
+	{
+		// IE
+		ie = document.selection.createRange();
+		var range = ie.text;
+		var ret = range.match(/\r\n|\r|\n/g);
+		var len_txt = range.length;
+		if ( ret ) len_txt -= ret.length;
+		ie.text = inp_word + range + "\n" + '{end_table}';
+		ie.move('character', - (len_txt + 12));
+		ie.moveEnd('character', len_txt);
+		ie.select();
+	} else
+	{
+		var start = tarea.selectionStart;
+		var end = tarea.selectionEnd;
+		var scrollTop = tarea.scrollTop;
+		var tmp = article.substr(0, start);
+		var range = article.slice( start, end) + "\n";
+		tarea.value = tmp + inp_word + range + "{end_table}" + article.substr(start + range.length,article.length);
+		tarea.setSelectionRange(tmp.length + inp_word.length,tmp.length + inp_word.length + range.length);
+		tarea.scrollTop = scrollTop + 30;
+	}
+}
+function htag_input(str)
+{
+	var article = document.nform.article.value;
+	var tarea = document.getElementById('article');
+	var inp_word = "\n{h" + str +"}";
+	tarea.focus();
+	if (/*@cc_on!@*/false)
+	{
+		// IE
+		ie = document.selection.createRange();
+		var range = ie.text;
+		var ret = range.match(/\r\n|\r|\n/g);
+		var len_txt = range.length;
+		if ( ret ) len_txt -= ret.length;
+		ie.text = inp_word + range + "\n";
+		ie.move('character', - (len_txt + 1));
+		ie.moveEnd('character', len_txt);
+		ie.select();
+	} else
+	{
+		var start = tarea.selectionStart;
+		var end = tarea.selectionEnd;
+		var scrollTop = tarea.scrollTop;
+		var tmp = article.substr(0, start);
+		var range = article.slice( start, end) + "\n";
+		tarea.value = tmp + inp_word + range + article.substr(start + range.length,article.length);
+		tarea.setSelectionRange(tmp.length + inp_word.length,tmp.length + inp_word.length + range.length);
+		tarea.scrollTop = scrollTop + 30;
+	}
+}
+function urltag_input()
+{
+	var article = document.nform.article.value;
+	var tarea = document.getElementById('article');
+	var inp_word = "{url:";
+	tarea.focus();
+	if (/*@cc_on!@*/false)
+	{
+		// IE
+		ie = document.selection.createRange();
+		var range = ie.text;
+		if(range == "")
+		{
+			range = "ここにURL";
+		}
+		var ret = range.match(/\r\n|\r|\n/g);
+		var len_txt = range.length;
+		if ( ret ) len_txt -= ret.length;
+		
+		ie.text = inp_word + range + '}';
+		ie.move('character', - (len_txt + 1));
+		ie.moveEnd('character', len_txt);
+		ie.select();
+	} else
+	{
+		var start = tarea.selectionStart;
+		var end = tarea.selectionEnd;
+		var scrollTop = tarea.scrollTop;
+		var tmp = article.substr(0, start);
+		var range = article.slice( start, end);
+		if(range == "")
+		{
+			range = "ここにURL"
+		}
+		tarea.value = tmp + inp_word + range +'}' + article.substr(start + range.length,article.length);
+		tarea.setSelectionRange(tmp.length + inp_word.length,tmp.length + inp_word.length + range.length);
+		tarea.scrollTop = scrollTop;
+	}
+}
+function preview()
+{
+	document.nform.article_preview.value = '1';
+	window.open('<%= @yaml['Url'] %>','weblog','toolbar=no,location=no,status=no,scrollbars=yes,width=900,height=600');
+	document.nform.target = 'weblog';
+	document.nform.focus();
+	document.nform.submit();
+}
+function exec()
+{
+	document.nform.article_preview.value = '';
+	document.nform.target = '';
+	document.nform.submit();
+}
+//-->
+</script>
+<div id="mente_article_input">
+<table id="mente_article_input_table">
+<tr>
+<form action="<%= @yaml['Url'] %>" method="post" name="nform">
+<input type="hidden" name="mode" value="<%= mode %>">
+<%= edit_input %>
+<td id="mente_article_input_td_left">
+Subject:
+</td>
+<td id="mente_article_input_td_right">
+<input type="text" name="subject" value="<%= subject %>" size="35">
+</td>
+</tr>
+<tr>
+<td id="mente_article_input_td_left">
+Article:
+</td>
+<td id="mente_article_input_td_right">
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td>
+<button type="button" id="mente_article_button" onclick="button_click('youtube');">You<br>Tube</button></td>
+<td>
+<button type="button" id="mente_article_button" onclick="image_puts();">画像</button></td>
+<td>
+<button type="button" id="mente_article_button" onclick="table_tag_input();">表</button></td>
+<td>
+<button type="button" id="mente_article_button" onclick="font_tag_input('{font_size:2}','Color_id');">文字<br>[小]</button></td>
+<td>
+<button type="button" id="mente_article_button" onclick="font_tag_input('{font_size:3}','Color_id');">文字<br>[中]</button></td>
+<td>
+<button type="button" id="mente_article_button" onclick="font_tag_input('{font_size:5}','Color_id');">文字<br>[大]</button></td>
+<td>
+<button type="button" id="mente_article_button" onclick="Color_font_view('Color_id')">文字<br>[色]</button><br>
+<div id="Color_id" style="border: 0px solid #ddf0f8; padding: 0px; background-color: #E6E6FA; cursor: pointer; width: 90px; display: none;position: absolute;font-family: 'ＭＳ ゴシック';">
+<a href="javascript: font_tag_input('{font_color:#000000}','Color_id');" style="text-decoration:none;"><font color="#000000">■</font></a><a href="javascript: font_tag_input('{font_color:#FF0000}','Color_id');" style="text-decoration:none;"><font color="#FF0000">■</font></a><a href="javascript: font_tag_input('{font_color:#FF4500}','Color_id');" style="text-decoration:none;"><font color="#FF4500">■</font></a><a href="javascript: font_tag_input('{font_color:#FF6347}','Color_id');" style="text-decoration:none;"><font color="#FF6347">■</font></a><a href="javascript: font_tag_input('{font_color:#F08080}','Color_id');" style="text-decoration:none;"><font color="#F08080">■</font></a><br><a href="javascript: font_tag_input('{font_color:#0000FF}','Color_id');" style="text-decoration:none;"><font color="#0000FF">■</font></a><a href="javascript: font_tag_input('{font_color:#1E90FF}','Color_id');" style="text-decoration:none;"><font color="#1E90FF">■</font></a><a href="javascript: font_tag_input('{font_color:#00BFFF}','Color_id');" style="text-decoration:none;"><font color="#00BFFF">■</font></a><a href="javascript: font_tag_input('{font_color:#4169E1}','Color_id');" style="text-decoration:none;"><font color="#4169E1">■</font></a><a href="javascript: font_tag_input('{font_color:#8470FF}','Color_id');" style="text-decoration:none;"><font color="#8470FF">■</font></a><br><a href="javascript: font_tag_input('{font_color:#228B22}','Color_id');" style="text-decoration:none;"><font color="#228B22">■</font></a><a href="javascript: font_tag_input('{font_color:#32CD32}','Color_id');" style="text-decoration:none;"><font color="#32CD32">■</font></a><a href="javascript: font_tag_input('{font_color:#76EE00}','Color_id');" style="text-decoration:none;"><font color="#76EE00">■</font></a><a href="javascript: font_tag_input('{font_color:#7FFF00}','Color_id');" style="text-decoration:none;"><font color="#7FFF00">■</font></a><a href="javascript: font_tag_input('{font_color:#76EE00}','Color_id');" style="text-decoration:none;"><font color="#76EE00">■</font></a><br><a href="javascript: font_tag_input('{font_color:#A020F0}','Color_id');" style="text-decoration:none;"><font color="#A020F0">■</font></a><a href="javascript: font_tag_input('{font_color:#DA70D6}','Color_id');" style="text-decoration:none;"><font color="#DA70D6">■</font></a><a href="javascript: font_tag_input('{font_color:#DDA0DD}','Color_id');" style="text-decoration:none;"><font color="#DDA0DD">■</font></a><a href="javascript: font_tag_input('{font_color:#EE82EE}','Color_id');" style="text-decoration:none;"><font color="#EE82EE">■</font></a><a href="javascript: font_tag_input('{font_color:#FFFFFF}','Color_id');" style="text-decoration:none;"><font color="#FFFFFF">■</font></a><br>　　　<a href="javascript: font_exec('Color_id')"><font size="1">閉じる</font></a>
+</div>
+</td>
+<td>
+<button type="button" id="mente_article_button" onclick="emoji_icon_view('emoji')">文字<br>[顔]</button><br>
+<div id="emoji" style="border: 0px solid #ddf0f8; padding: 0px; background-color: #F0FFFF;  cursor: pointer; width: 210px; display: none; position: absolute;">
+<a href="javascript: emoji_icon_input('(´∀｀)','emoji');">(´∀｀)</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="javascript: emoji_icon_input('(･ω･´)','emoji');">(･ω･´)</a><br>
+<a href="javascript: emoji_icon_input('(;ﾟ;Д;ﾟ;)','emoji');">(;ﾟ;Д;ﾟ;)</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="javascript: emoji_icon_input('ヾ(^ω^*) ','emoji');">ヾ(^ω^*) </a><br>
+<a href="javascript: emoji_icon_input('(-ω-)','emoji');">(-ω-)</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="javascript: emoji_icon_input('ヽ［・∀・］ノ','emoji');">ヽ［・∀・］ノ</a><br>
+<a href="javascript: emoji_icon_input('ｏ(*≧∇≦)ﾉ','emoji');">ｏ(*≧∇≦)ﾉ</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="javascript: emoji_icon_input('(^Д^)ゞ','emoji');">(^Д^)ゞ</a>
+<br>　　　　　　　　　　　　　　　<a href="javascript: emoji_icon_exec('emoji')"><font size=1>閉じる</font></a>
+</div>
+</td>
+<td>
+<button type="button" id="mente_article_button" onclick="htag_input('1')">見出<br>[H1]</button></td>
+<td>
+<button type="button" id="mente_article_button" onclick="htag_input('2')">見出<br>[H2]</button></td>
+<td>
+<button type="button" id="mente_article_button" onclick="htag_input('3')">見出<br>[H3]</button></td>
+<td>
+<button type="button" id="mente_article_button" onclick="urltag_input()">Link<br>[URL]</button></td>
+</tr></table>
+<textarea id="article" name="article" rows="7" cols="60"><%= article %></textarea>
+</td>
+</tr>
+<tr>
+<td></td>
+<td id="mente_article_input_td_submit">
+<input type="hidden" name="article_preview" value="">
+<input type="button" value="プレビュー" onclick="preview();">&nbsp;&nbsp;
+<input type="button" value="投稿する" onclick="exec();">
+</td></form>
+</tr>
+</table>
+<br>
+<form action="<%= @yaml['Url'] %>" method="get">
+<input type="hidden" name="mode" value="mente_top">
+<input type="submit" value="管理画面TOPに戻る">
+</form>
+</div>
+<%= @PageFootView %></div>
+</body></html>

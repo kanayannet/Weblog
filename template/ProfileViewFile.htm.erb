@@ -1,0 +1,85 @@
+<% 
+	url_html = ""
+	hobby_html = ""
+	profile_text_html = ""
+	image_html = ""
+	close_button = ""
+
+	if(image != "")
+		image_html =<<"__END"
+		<tr>
+		<td id="profile_image" colspan="2">
+		<img src="#{image}" width="#{width}" height="#{height}">
+		</td>
+		</tr>
+__END
+	end
+
+	if(url != "")
+	
+		url_html = <<"__END"
+		<tr>
+		<td id="profile_td_left">
+		URL:
+		</td>
+		<td id="profile_td_right">
+		<a href="#{h(url)}" target="_blank">#{h(url)}</a>
+		</td>
+		</tr>
+__END
+	end
+
+	if(hobby != "")
+		hobby_html = <<"__END"
+		<tr>
+		<td id="profile_td_left">
+		趣味:
+		</td>
+		<td id="profile_td_right">
+		#{h(hobby)}
+		</td>
+		</tr>
+__END
+	end
+
+	if(profile != "")
+		profile_text_html =<<"__END"
+		<tr>
+		<td id="profile_td_left">
+		一言メッセージ:
+		</td>
+		<td id="profile_td_right">
+		#{@logic.ProfileConvert(profile)}<br>
+		</td>
+		</tr>
+__END
+	end
+	
+	if(preview_flag == 1)
+		close_button = '<br><input type="button" value="この画面を閉じる" onclick="window.close();">'
+	else
+		#プレビューでなければ戻るボタン
+		close_button = '<br><input type="button" value="前の画面に戻る" onclick="history.back();">'
+	end
+ %>
+<%= @PageHeadView %>
+<div id="profile">
+<table id="profile_table">
+<%= image_html %>
+<tr>
+<td id="profile_td_left">
+名前:
+</td>
+<td id="profile_td_right">
+<%= h name %>
+</td>
+</tr>
+<%= url_html %>
+<%= hobby_html %>
+<%= profile_text_html %>
+</table>
+</div>
+<%= close_button %>
+
+<%= @PageFootView %></div>
+</body></html>

@@ -1,0 +1,163 @@
+# 初期設定ファイル
+
+# このプログラムを置くURL
+Url: http://xxxx.xxxx.co.jp/weblog.rb
+
+# 親記事のファイル
+ParentArticleFile: ParentArticleFile.txt
+
+# 親記事の保存件数
+LimitParRec: 10
+
+# 親記事の最大露出数
+MaxParentPage: 5
+
+# 子記事のファイル
+ChildArticleFile: ChildArticleFile.txt
+
+# 子記事の最大露出数
+MaxChildPage: 5
+
+# TrackBackの保存先ファイル
+TrackBackFile: TrackBack.txt
+
+# Trackbackの最大露出数
+MaxTrackBackPage: 5
+
+# プロフィールのファイル
+ProfileFile: Profile.txt
+
+# お気に入りのファイル
+FavoritesFile: Favorites.txt
+
+# 休日登録用のファイル
+HolidayFile: Holiday.txt
+
+# 左サイド自由入力欄の設定ファイル
+LeftFreeInputFile: LeftFreeInput.txt
+
+# 右サイド自由入力欄の設定ファイル
+RightFreeInputFile: RightFreeInput.txt
+
+# Title名
+Title: Test Blog
+
+# ブログの説明
+Description: Ruby Blog
+
+# Rss_icon のURL
+RssIcon: http://xxxx.xxxx.co.jp/rss.gif
+
+# 画像を保存するディレクトリー「CGIからみたディレクトリー」
+ImageFileDir: ./img/
+
+# 画像のURLのpath(http://～ 最後は「/」を付ける)
+ImageFileUrl: ./img/
+
+# 禁止ワード設定ファイル
+DoNotUseWordFile: DoNotUseWordFile.txt
+
+# アクセス禁止IP を保存する
+AccessDeniedFile: AccessDenied.txt
+
+# レス記事の入力可能文字数
+LimitResStr: 300
+
+# レス記事の保存件数
+LimitResRecord: 10
+
+# TrackBackの入力可能文字数
+LimitTrackBackStr: 300
+
+# TrackBack記事の保存件数
+LimitTrRecord: 10
+
+# cookie のID名
+CookieIdName: KanayanWeblog
+
+#PassWord の値
+PassWord: 1234
+
+# Css のURL
+CssUrl: ./weblog.css
+
+# 画像管理用の設定ファイル
+ImgListFile: ImgListFile.txt
+
+# TopPage 全体のテンプレートファイル
+TopPageAllViewFile: template/TopPageAllViewFile.htm.erb
+
+# Page ヘッダー部分のテンプレートファイル
+PageHeadViewFile: template/PageHeadViewFile.htm.erb
+
+# TopPage Calender部分のテンプレートファイル
+TopPageCalViewFile: template/TopPageCalViewFile.htm.erb
+
+# TopPage Favorites部分のテンプレートファイル
+TopPageFavoritesViewFile: template/TopPageFavoritesViewFile.htm.erb
+
+# TopPage 中央上部(親記事)のテンプレートファイル
+TopPageCenterTopViewFile: template/TopPageCenterTopViewFile.htm.erb
+
+# TopPage 中央中部(子記事)のテンプレートファイル
+TopPageCenterMiddleViewFile: template/TopPageCenterMiddleViewFile.htm.erb
+
+# TopPage 中央下部(Trackback記事)のテンプレートファイル
+TopPageCenterBottomViewFile: template/TopPageCenterBottomViewFile.htm.erb
+
+# TopPage 中央最下部(コメント入力フォーム)のテンプレートファイル
+TopPageCenterMostBottomViewFile: template/TopPageCenterMostBottomViewFile.htm.erb
+
+# TopPage 右親記事最近部分のテンプレートファイル
+TopPageRightNewParentViewFile: template/TopPageRightNewParentViewFile.htm.erb
+
+# TopPage 右子供記事最近部分のテンプレートファイル
+TopPageRightNewChildViewFile: template/TopPageRightNewChildViewFile.htm.erb
+
+# PassWord 入力画面のテンプレートファイル
+PassInputViewFile: template/PassInputViewFile.htm.erb
+
+# Menteトップページ画面のテンプレートファイル
+MenteTopViewFile: template/MenteTopViewFile.htm.erb
+
+# Mente記事入力画面のテンプレート
+MenteArticleInputViewFile: template/MenteArticleInputViewFile.htm.erb
+
+# 記事プレビュー画面のテンプレート
+ArticlePreviewFile: template/ArticlePreviewFile.htm.erb
+
+# 記事リスト画面のテンプレート
+ArticleListFile: template/ArticleListFile.htm.erb
+
+# プロフィール入力画面のテンプレート
+ProfileInputViewFile: template/ProfileInputViewFile.htm.erb
+
+# プロフィール画面のテンプレート
+ProfileViewFile: template/ProfileViewFile.htm.erb
+
+#お気に入り編集画面
+FavoritesInputViewFile: template/FavoritesInputViewFile.htm.erb
+
+# 画像管理の編集画面
+ImgInputViewFile: template/ImgInputViewFile.htm.erb
+
+# 休日管理画面
+HolidayInputViewFile: template/HolidayInputViewFile.htm.erb
+
+#返信一覧画面
+ResArticleListViewFile: template/ResArticleListViewFile.htm.erb
+
+#TrackBack一覧画面
+TrackBackListViewFile: template/TrackBackListViewFile.htm.erb
+
+#左自由入力欄編集画面
+LeftFreeInputViewFile: template/LeftFreeInputViewFile.htm.erb
+
+#右自由入力欄編集画面
+RightFreeInputViewFile: template/RightFreeInputViewFile.htm.erb
+
+#返信のプレビュー画面
+ResPreviewFile: template/ResPreviewFile.htm.erb
+
+# Page フッター部分のテンプレートファイル
+PageFootViewFile: template/PageFootViewFile.htm.erb

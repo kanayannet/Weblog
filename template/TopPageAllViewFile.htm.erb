@@ -1,0 +1,34 @@
+<%= @PageHeadView %>
+<br>
+<div id="left_menu">
+<%= calender %>
+<br>
+<div id="top_profile">
+<a href="<%= @yaml['Url'] %>?mode=profile">プロフィール</a>
+</div><br>
+<%= favorites %>
+<div id="left_free_input">
+<hr>
+<%= left_free_html %>
+</div>
+</div>
+<div id="center_menu">
+<%= parent_html %>
+<%= child %>
+<%= track %>
+<%= commentform %>
+<%= @PageFootView %>
+</div>
+<div id="right_menu">
+<%= newparent %>
+<a href="<%= @yaml['Url'] %>?mode=Rss"><img src="<%= @yaml['RssIcon'] %>" border="0"></a><br>&nbsp;
+<%= newchild %>
+<div id="right_free_input">
+<hr>
+<%= right_free_html %>
+</div>
+<br><br>
+<a href="<%= @yaml['Url'] %>?mode=mente_top">管理画面</a><br>&nbsp;
+</div>
+</div>
+</body></html>

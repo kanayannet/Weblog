@@ -1,0 +1,36 @@
+<% 
+	child_html = "<div id=\"comment1\">この記事へのコメント</div>"
+	check = 0
+	child_cnt = 0
+	child_list.each_index do |key|
+		if(cgi['edit_num'].to_i == child_list[key]['parid'].to_i)
+			cyear = child_list[key]['created_at'][0..3]
+			cmonth = child_list[key]['created_at'][4..5]
+			cday = child_list[key]['created_at'][6..7]
+			chour = child_list[key]['created_at'][8..9]
+			cmin = child_list[key]['created_at'][10..11]
+	 		csec = child_list[key]['created_at'][12..13]
+
+			name = @logic.SubjectConvert(child_list[key]['name'])
+			article = @logic.ResArticleConvert(child_list[key]['article'])
+			subject = @logic.SubjectConvert(child_list[key]['subject'])
+
+			child_html = <<"__END"
+			#{child_html}
+			<div id="comment2"><a name="comment-#{child_list[key]['id']}">#{subject}</a><br>&nbsp;
+			<div id="comment3">#{article}</div>
+			<div id="comment4">お名前：#{name}&nbsp;&nbsp;#{cyear}年#{cmonth}月#{cday}日 #{chour}:#{cmin}:#{csec}<br /></div></div>
+__END
+			check = 1
+			child_cnt = child_cnt + 1
+			if(child_cnt >= @yaml['MaxChildPage'])
+				break
+			end
+		end
+	end
+	if(check == 0)
+		child_html = ""
+	end
+ %>
+
+<%= child_html %>
