@@ -1,8 +1,8 @@
 class WeblogView
 	#Viewのためのライブラリ
 	require 'erb'
-	require 'weblog_controller.rb'
-	require 'weblog_logic.rb'
+	require './weblog_controller.rb'
+	require './weblog_logic.rb'
 	
 	include ERB::Util
 	def initialize
@@ -201,7 +201,7 @@ class WeblogView
 	    #親記事の読込
 	    erb = ERB.new(@CenterTop)
 	    (parent_list,parent_year_month_day,parentid) = @logic.ParentArticleRead(cgi)
-	    parent = erb.result(binding)
+	    parent_html = erb.result(binding)
 	    
 	    #カレンダー表示
 	    (holiday_read,holiday_info) = @logic.HolidayRead(cgi)

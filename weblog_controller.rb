@@ -11,8 +11,8 @@ Yaml = 'weblog.yml'
 	#初期設定ライブラリ
 	require 'yaml'
 	require 'cgi'
-	require 'weblog_view.rb'
-	require 'weblog_logic.rb'
+	require './weblog_view.rb'
+	require './weblog_logic.rb'
 	def initialize(flag)
 	  begin
 	    #YMLのpathを変えたいときは下記の行を変更する

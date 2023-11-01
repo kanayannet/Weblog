@@ -1,6 +1,6 @@
 class WeblogLogic
 	#Weblog用のロジックのライブラリ
-	require 'weblog_controller.rb'
+	require './weblog_controller.rb'
 	require 'erb'
 	include ERB::Util
 	def initialize
